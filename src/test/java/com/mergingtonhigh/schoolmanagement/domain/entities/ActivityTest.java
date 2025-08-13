@@ -121,7 +121,7 @@ class ActivityTest {
         // Act
         Activity mangaActivity = new Activity(
             "Manga Maniacs",
-            "Explore as histórias fantásticas dos personagens mais interessantes dos Mangás japoneses (romances gráficos).",
+            "🌸 Mergulhe no universo épico dos mangás japoneses! Descubra mundos fantásticos repletos de ninjas corajosos, piratas aventureiros, super-heróis com poderes únicos e romances emocionantes que vão fazer seu coração disparar. Dos clássicos atemporais aos lançamentos mais quentes, vamos explorar as páginas que definiram gerações e criaram fenômenos culturais globais. Prepare-se para discussões intensas, teorias malucas e descobrir seu próximo mangá favorito! ⚡🗾",
             "Tuesdays, 7:00 PM - 8:00 PM",
             schedule,
             15
@@ -129,7 +129,7 @@ class ActivityTest {
         
         // Assert
         assertEquals("Manga Maniacs", mangaActivity.getName());
-        assertEquals("Explore as histórias fantásticas dos personagens mais interessantes dos Mangás japoneses (romances gráficos).", mangaActivity.getDescription());
+        assertEquals("🌸 Mergulhe no universo épico dos mangás japoneses! Descubra mundos fantásticos repletos de ninjas corajosos, piratas aventureiros, super-heróis com poderes únicos e romances emocionantes que vão fazer seu coração disparar. Dos clássicos atemporais aos lançamentos mais quentes, vamos explorar as páginas que definiram gerações e criaram fenômenos culturais globais. Prepare-se para discussões intensas, teorias malucas e descobrir seu próximo mangá favorito! ⚡🗾", mangaActivity.getDescription());
         assertEquals(15, mangaActivity.getMaxParticipants());
         assertEquals(0, mangaActivity.getCurrentParticipantCount());
         assertTrue(mangaActivity.canAddParticipant());
