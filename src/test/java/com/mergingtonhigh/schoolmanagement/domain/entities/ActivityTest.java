@@ -2,6 +2,7 @@ package com.mergingtonhigh.schoolmanagement.domain.entities;
 
 import com.mergingtonhigh.schoolmanagement.domain.valueobjects.Email;
 import com.mergingtonhigh.schoolmanagement.domain.valueobjects.ScheduleDetails;
+import com.mergingtonhigh.schoolmanagement.domain.valueobjects.DifficultyLevel;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
@@ -136,6 +137,47 @@ class ActivityTest {
         assertEquals(List.of("Tuesday"), mangaActivity.getScheduleDetails().days());
         assertEquals(LocalTime.of(19, 0), mangaActivity.getScheduleDetails().startTime());
         assertEquals(LocalTime.of(20, 0), mangaActivity.getScheduleDetails().endTime());
+        assertNull(mangaActivity.getDifficultyLevel()); // Default activity has no difficulty level
+    }
+    
+    @Test
+    void shouldCreateActivityWithDifficultyLevel() {
+        // Arrange
+        ScheduleDetails schedule = new ScheduleDetails(
+            List.of("Friday"), 
+            LocalTime.of(16, 0), 
+            LocalTime.of(18, 0)
+        );
+        
+        // Act
+        Activity advancedActivity = new Activity(
+            "Advanced Programming",
+            "Advanced coding challenges for experienced programmers",
+            "Fri 4:00-6:00 PM",
+            schedule,
+            8,
+            DifficultyLevel.ADVANCED
+        );
+        
+        // Assert
+        assertEquals("Advanced Programming", advancedActivity.getName());
+        assertEquals(DifficultyLevel.ADVANCED, advancedActivity.getDifficultyLevel());
+        assertEquals(8, advancedActivity.getMaxParticipants());
+    }
+    
+    @Test 
+    void shouldSetAndGetDifficultyLevel() {
+        // Arrange
+        Activity activity = createTestActivity();
+        
+        // Act & Assert
+        assertNull(activity.getDifficultyLevel()); // Initially null
+        
+        activity.setDifficultyLevel(DifficultyLevel.INTERMEDIATE);
+        assertEquals(DifficultyLevel.INTERMEDIATE, activity.getDifficultyLevel());
+        
+        activity.setDifficultyLevel(null);
+        assertNull(activity.getDifficultyLevel());
     }
     
     private Activity createTestActivity() {

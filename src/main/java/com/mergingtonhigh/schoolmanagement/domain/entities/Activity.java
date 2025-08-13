@@ -2,6 +2,7 @@ package com.mergingtonhigh.schoolmanagement.domain.entities;
 
 import com.mergingtonhigh.schoolmanagement.domain.valueobjects.Email;
 import com.mergingtonhigh.schoolmanagement.domain.valueobjects.ScheduleDetails;
+import com.mergingtonhigh.schoolmanagement.domain.valueobjects.DifficultyLevel;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -21,6 +22,7 @@ public class Activity {
     private ScheduleDetails scheduleDetails;
     private int maxParticipants;
     private List<String> participants;
+    private DifficultyLevel difficultyLevel; // Optional - null means suitable for all levels
     
     public Activity() {
         this.participants = new ArrayList<>();
@@ -34,6 +36,18 @@ public class Activity {
         this.scheduleDetails = scheduleDetails;
         this.maxParticipants = validateMaxParticipants(maxParticipants);
         this.participants = new ArrayList<>();
+        this.difficultyLevel = null; // Default: suitable for all levels
+    }
+    
+    public Activity(String name, String description, String schedule, 
+                   ScheduleDetails scheduleDetails, int maxParticipants, DifficultyLevel difficultyLevel) {
+        this.name = validateName(name);
+        this.description = validateDescription(description);
+        this.schedule = schedule;
+        this.scheduleDetails = scheduleDetails;
+        this.maxParticipants = validateMaxParticipants(maxParticipants);
+        this.participants = new ArrayList<>();
+        this.difficultyLevel = difficultyLevel;
     }
     
     public boolean canAddParticipant() {
@@ -106,4 +120,7 @@ public class Activity {
     public int getCurrentParticipantCount() {
         return participants.size();
     }
+    
+    public DifficultyLevel getDifficultyLevel() { return difficultyLevel; }
+    public void setDifficultyLevel(DifficultyLevel difficultyLevel) { this.difficultyLevel = difficultyLevel; }
 }

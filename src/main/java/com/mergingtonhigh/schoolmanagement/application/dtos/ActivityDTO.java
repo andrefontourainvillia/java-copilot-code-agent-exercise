@@ -1,5 +1,6 @@
 package com.mergingtonhigh.schoolmanagement.application.dtos;
 
+import com.mergingtonhigh.schoolmanagement.domain.valueobjects.DifficultyLevel;
 import java.util.List;
 
 /**
@@ -12,7 +13,8 @@ public record ActivityDTO(
     ScheduleDetailsDTO scheduleDetails,
     int maxParticipants,
     List<String> participants,
-    int currentParticipantCount
+    int currentParticipantCount,
+    DifficultyLevel difficultyLevel
 ) {
     public record ScheduleDetailsDTO(
         List<String> days,

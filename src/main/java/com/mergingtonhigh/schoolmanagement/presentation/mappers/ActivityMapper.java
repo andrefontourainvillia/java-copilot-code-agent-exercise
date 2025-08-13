@@ -31,7 +31,8 @@ public class ActivityMapper {
             scheduleDetailsDTO,
             activity.getMaxParticipants(),
             activity.getParticipants(),
-            activity.getCurrentParticipantCount()
+            activity.getCurrentParticipantCount(),
+            activity.getDifficultyLevel()
         );
     }
 }
