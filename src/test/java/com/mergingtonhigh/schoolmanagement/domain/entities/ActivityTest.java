@@ -109,6 +109,35 @@ class ActivityTest {
         );
     }
     
+    @Test
+    void shouldCreateMangaManiacsActivityWithValidData() {
+        // Arrange
+        ScheduleDetails schedule = new ScheduleDetails(
+            List.of("Tuesday"), 
+            LocalTime.of(19, 0), 
+            LocalTime.of(20, 0)
+        );
+        
+        // Act
+        Activity mangaActivity = new Activity(
+            "Manga Maniacs",
+            "Explore as histórias fantásticas dos personagens mais interessantes dos Mangás japoneses (romances gráficos).",
+            "Tuesdays, 7:00 PM - 8:00 PM",
+            schedule,
+            15
+        );
+        
+        // Assert
+        assertEquals("Manga Maniacs", mangaActivity.getName());
+        assertEquals("Explore as histórias fantásticas dos personagens mais interessantes dos Mangás japoneses (romances gráficos).", mangaActivity.getDescription());
+        assertEquals(15, mangaActivity.getMaxParticipants());
+        assertEquals(0, mangaActivity.getCurrentParticipantCount());
+        assertTrue(mangaActivity.canAddParticipant());
+        assertEquals(List.of("Tuesday"), mangaActivity.getScheduleDetails().days());
+        assertEquals(LocalTime.of(19, 0), mangaActivity.getScheduleDetails().startTime());
+        assertEquals(LocalTime.of(20, 0), mangaActivity.getScheduleDetails().endTime());
+    }
+    
     private Activity createTestActivity() {
         ScheduleDetails schedule = new ScheduleDetails(
             List.of("Monday"), 

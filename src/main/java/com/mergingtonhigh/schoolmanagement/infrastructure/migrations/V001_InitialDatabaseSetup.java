@@ -176,6 +176,16 @@ public class V001_InitialDatabaseSetup {
                 16);
         chessTournament.setParticipants(List.of("william@mergington.edu", "jacob@mergington.edu"));
         mongoTemplate.save(chessTournament);
+
+        // Manga Maniacs
+        Activity mangaManiacs = new Activity(
+                "Manga Maniacs",
+                "Explore as histórias fantásticas dos personagens mais interessantes dos Mangás japoneses (romances gráficos).",
+                "Tuesdays, 7:00 PM - 8:00 PM",
+                new ScheduleDetails(List.of("Tuesday"), LocalTime.of(19, 0), LocalTime.of(20, 0)),
+                15);
+        mangaManiacs.setParticipants(List.of());
+        mongoTemplate.save(mangaManiacs);
     }
 
     private void seedTeachers() {
@@ -216,7 +226,7 @@ public class V001_InitialDatabaseSetup {
                 "Chess Club", "Programming Class", "Morning Fitness", "Soccer Team",
                 "Basketball Team", "Art Club", "Drama Club", "Math Club",
                 "Debate Team", "Weekend Robotics Workshop", "Science Olympiad",
-                "Sunday Chess Tournament")), Activity.class);
+                "Sunday Chess Tournament", "Manga Maniacs")), Activity.class);
 
         // Remove all seeded teachers
         mongoTemplate.remove(new Query(Criteria.where("_id").in("admin", "mrodriguez", "mchen", "principal")),
